@@ -1,0 +1,27 @@
+<div style=background-color:red;>
+    <form class="example-form" [formGroup]="urlForm">
+        <mat-form-field style=background-color:white; class="example-full-width" appearance="fill">
+            <mat-label>Enter Site</mat-label>
+            <input matInput placeholder="https://www.google.com/" value="Sushi" formControlName="url">
+        </mat-form-field>
+        <section>
+            <div class="example-button-row">
+                <button mat-raised-button color="primary" (click)="processUrl()">Process URL</button>
+                <button mat-raised-button color="primary" [disabled]="activebtn" (click)="onSubmit()">Submit</button>
+            </div>
+        </section>
+    </form>
+    <ng-container *ngIf="status_var==1; then first else second"></ng-container>
+    <ng-template #first>
+        <h1 class="info-text">
+            {{returnedvalue}}
+        </h1>
+        <i style=color:white> Be careful while accessing this site {{url}} </i>
+    </ng-template>
+    <ng-template #second>
+        <ng-container *ngIf="returnedvalue === 'Site does not exist';then third"></ng-container>
+    </ng-template>
+    <ng-template #third>
+        <h1>{{returnedvalue}}</h1>
+    </ng-template>
+</div>
